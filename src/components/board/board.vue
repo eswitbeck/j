@@ -16,6 +16,8 @@ import QuestionColumn from '../questionColumn/questionColumn.vue';
 <style scoped lang="scss">
 #board {
   display: flex;
+  padding: 15px;
   justify-content: center;
+  border: black 1px solid;
 }
 </style>

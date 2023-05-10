@@ -29,7 +29,7 @@
 .box {
   height: 90px;
   width: 150px;
-  margin: 2px;
+  margin: 5px;
   border: solid 1px black;
   display: flex;
   align-items: center;
@@ -41,8 +41,7 @@
 }
 
 .box.category {
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 </style>
