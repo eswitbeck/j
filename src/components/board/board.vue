@@ -4,20 +4,30 @@ import QuestionColumn from '../questionColumn/questionColumn.vue';
 
 <template>
   <div id="board">
-    <QuestionColumn />
-    <QuestionColumn />
-    <QuestionColumn />
-    <QuestionColumn />
-    <QuestionColumn />
-    <QuestionColumn />
+    <div class="board-frame">
+      <QuestionColumn />
+      <QuestionColumn />
+      <QuestionColumn />
+      <QuestionColumn />
+      <QuestionColumn />
+      <QuestionColumn />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+
 #board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-frame {
   display: flex;
   padding: 15px;
   justify-content: center;
   border: black 1px solid;
 }
 </style>
+}

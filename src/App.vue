@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import Board from './components/board/board.vue';
+
+const getRandomCategory: () => number = () => Math.round(Math.random() * 28163);
+
+const categories: number[] = Array(5).fill()
+  .map(() => getRandomCategory());
+console.log(categories);
 </script>
 
 <template>
