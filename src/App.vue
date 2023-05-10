@@ -3,8 +3,9 @@ import Board from './components/board/board.vue';
 
 const getRandomCategory: () => number = () => Math.round(Math.random() * 28163);
 
-const categories: number[] = Array(5).fill()
+const categories: number[] = Array(6).fill()
   .map(() => getRandomCategory());
+
 console.log(categories);
 </script>
 
@@ -12,7 +13,7 @@ console.log(categories);
 <header>
   <h1>j</h1>
   <h2>
-    (The j stands for jService (the j stands for J! Archive (the J! stands for
+    (the j stands for jService (the j stands for J! Archive (the J! stands for
     Jeopardy!)))
   </h2>
 </header>
@@ -26,6 +27,7 @@ console.log(categories);
   </div>
 </main>
 <footer>
+  Built with Vue, Vue Query, Zustand, and love ❤️
 </footer>
 
 </template>
@@ -49,14 +51,24 @@ header {
 main {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 2fr;
 }
 
 #players {
+  margin: 20px;
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: solid 1px black;
+}
+
+footer {
+  border-top: solid 1px black;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>

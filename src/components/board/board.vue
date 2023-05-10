@@ -21,6 +21,7 @@ import QuestionColumn from '../questionColumn/questionColumn.vue';
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .board-frame {

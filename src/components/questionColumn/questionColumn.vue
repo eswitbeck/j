@@ -8,14 +8,19 @@
     </div>
     <div class="questions">
       <div class="box question">
+        $200
       </div>
       <div class="box question">
+        $400
       </div>
       <div class="box question">
+        $600
       </div>
       <div class="box question">
+        $800
       </div>
       <div class="box question">
+        $1000
       </div>
     </div>
   </div>
