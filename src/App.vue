@@ -1,35 +1,27 @@
 <script setup lang="ts">
 import Board from './components/board/board.vue';
-
-const getRandomCategory: () => number = () => Math.round(Math.random() * 28163);
-
-const categories: number[] = Array(6).fill()
-  .map(() => getRandomCategory());
-
-console.log(categories);
 </script>
 
 <template>
-<header>
-  <h1>j</h1>
-  <h2>
-    (the j stands for jService (the j stands for J! Archive (the J! stands for
-    Jeopardy!)))
-  </h2>
-</header>
-<main>
-  <Board />
-  <div id="players">
-    <input name="name" value="" placeholder="Name" />
-    <button>Add Player</button>
-    <div id="player-list">
+  <header>
+    <h1>j</h1>
+    <h2>
+      (the j stands for jService (the j stands for J! Archive (the J! stands for
+      Jeopardy!)))
+    </h2>
+  </header>
+  <main>
+    <Board />
+    <div id="players">
+      <input name="name" value="" placeholder="Name" />
+      <button>Add Player</button>
+      <div id="player-list">
+      </div>
     </div>
-  </div>
-</main>
-<footer>
-  Built with Vue, Vue Query, Zustand, and love ❤️
-</footer>
-
+  </main>
+  <footer>
+    Built with Vue, Vue Query, Zustand, and love ❤️
+  </footer>
 </template>
 
 <style lang="scss">
