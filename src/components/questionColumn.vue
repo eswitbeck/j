@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import Question from '../question/question.vue';
+import Question from './question.vue';
 const props = defineProps({
   questionList: Object
 });

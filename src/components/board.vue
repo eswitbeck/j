@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
-import QuestionColumn from '../questionColumn/questionColumn.vue';
+import QuestionColumn from './questionColumn.vue';
 const getRandomCategory: () => number = () => Math.round(Math.random() * 28163);
 
 const categories: number[] = Array(6).fill(null)

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Board from './components/board/board.vue';
+import Board from './components/board.vue';
+import Players from './components/players.vue';
 </script>
 
 <template>
@@ -12,12 +13,7 @@ import Board from './components/board/board.vue';
   </header>
   <main>
     <Board />
-    <div id="players">
-      <input name="name" value="" placeholder="Name" />
-      <button>Add Player</button>
-      <div id="player-list">
-      </div>
-    </div>
+    <Players />
   </main>
   <footer>
     Built with Vue, Vue Query, Zustand, and love ❤️
