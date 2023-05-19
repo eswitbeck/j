@@ -56,6 +56,11 @@ const data = computed(() => props.questionList.data);
 
 .box.category {
   margin-bottom: 15px;
+
+  p {
+    text-align: center;
+    font-family: sans-serif;
+  }
 }
 
 </style>

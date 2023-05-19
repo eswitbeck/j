@@ -2,30 +2,24 @@
 import { ref } from 'vue';
 import type { Ref } from 'vue';
 import type { Player } from '../types';
+import { usePlayerStore } from '../stores/playerSlice';
 
-const mockPlayers: Ref<Player[]> = ref([
-  {
-    name: 'Me',
-    winnings: 200,
-    position: 1,
-    id: 'sss',
-  },
-  {
-    name: 'Eric',
-    winnings: 2000,
-    position: 0,
-    id: 'scs',
-  }
-]);
+const { players, setPlayerGuessStatus } = usePlayerStore();
+const handleCorrect = id => setPlayerGuessStatus.value('correct', id);
+const handleIncorrect = id => setPlayerGuessStatus.value('incorrect', id);
 </script>
+
 <template>
   <div id="player-list">
-    <div class="player" v-for="player in mockPlayers">
+    <div class="player" v-for="player in Object.values(players)">
+      <button @click="() => handleCorrect(player.id)" setPlayer>&check;</button>
+      <button @click="() => handleIncorrect(player.id)">x</button>
       <p>${{ player.winnings }}</p>
       <p>{{ player.name }}</p>
     </div>
   </div>
 </template>
+
 <style lang="scss">
 #player-list {
 }

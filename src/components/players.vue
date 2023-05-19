@@ -1,15 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { nanoid } from 'nanoid';
 import PlayerList from './playerList.vue';
 const playerName: Ref<string> = ref('');
-const addPlayer = (): void => { console.log(playerName.value) }
+import { usePlayerStore } from '../stores/playerSlice';
+
+const { players, addPlayer } = usePlayerStore();
+const handleClick = () => {
+  if (!playerName.value) return;
+  addPlayer.value(playerName.value, nanoid());
+  playerName.value = '';
+}
+
 </script>
 <template>
   <div id="players">
     <div class="inner">
       <span> 
         <input v-model="playerName" placeholder="Name" />
-        <button @click="addPlayer">Add Player</button>
+        <button @click="handleClick">Add Player</button>
       </span>
       <PlayerList />
     </div>
