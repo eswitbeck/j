@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useQuery } from '@tanstack/vue-query';
+import { computed, watch } from 'vue';
 import { useGameStore } from '../stores/gameSlice';
+import { useQuestionStore } from '../stores/questionsSlice';
+import { getCategory } from '../utils/getCategory';
 import QuestionColumn from './questionColumn.vue';
 import QuestionDisplay from './questionDisplay.vue';
 
-import { getCategory } from '../utils/getCategory';
-(() => getCategory().then(d => console.log(d)))();
-
-const questionLists = ref(new Array(6));
-
 const { boardState } = useGameStore();
+const { categories, setCategory } = useQuestionStore();
+
+const asyncSet = async (i) => {
+  setCategory.value(await getCategory(), i);
+  console.log(categories.value);
+}
+
+for (let i = 0; i < 6; i++) {
+  asyncSet(i);
+}
+
+const categoryArray = computed(() => Object.values(categories.value));
+watch(categoryArray, () => console.log(categoryArray.value));
+
+
 </script>
 
 <template>
@@ -18,7 +29,7 @@ const { boardState } = useGameStore();
     <div class="board-frame">
       <QuestionColumn
         v-if="boardState === 'select_single'"
-        v-for="questionList in questionLists"
+        v-for="questionList in categoryArray"
         :questionList="questionList"
       />
       <QuestionDisplay v-else-if="boardState === 'reading'" />

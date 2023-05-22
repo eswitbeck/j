@@ -4,37 +4,17 @@ import Question from './question.vue';
 const props = defineProps({
   questionList: Object
 });
-
-const isLoading = computed(() => props.questionList.isLoading);
-const isError = computed(() => props.questionList.isError);
-const data = computed(() => props.questionList.data);
 </script>
 
 <template>
   <div class="question-column">
     <div class="box category">
-      <p v-if="isLoading">
-        Loading...
-      </p>
-      <p v-if="isError">
-        Error!
-      </p>
-      <p v-else-if="data">
-        {{ data.title.toUpperCase() }}
+      <p>
+        {{ props.questionList.title.toUpperCase() }}
       </p>
     </div>
-    <div v-if="isLoading" class="questions">
-      <div v-for="i in 5" :key="i" class="box question">
-        loading...
-      </div>
-    </div>
-    <div v-else-if="isError">
-      <div v-for="i in 5" :key="i" class="box question">
-        Error!
-      </div>
-    </div>
-    <div v-else-if="data">
-      <Question v-for="clue in data.clues" :clue="clue"/>
+    <div>
+      <Question v-for="clue in props.questionList.clues" :clue="clue"/>
     </div>
   </div>
 </template>
