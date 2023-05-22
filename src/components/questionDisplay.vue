@@ -5,7 +5,9 @@ const { setBoardState, currentQuestion } = useGameStore();
 let status = ref(0);
 const toggle = () => status.value = (status.value + 1) % 3;
 // watch status to fire setBoardState
-watch(status, () => status.value === 2 ? setBoardState.value("select_single") : null);
+watch(status, () => (
+  status.value === 2 ? setBoardState.value("select_single") : null)
+);
 </script>
 
 <template>
@@ -33,6 +35,10 @@ watch(status, () => status.value === 2 ? setBoardState.value("select_single") : 
   align-items: center;
   justify-content: center;
   padding: 15px;
+  
+  p {
+    text-align: center;
+  }
 }
 </style>
 

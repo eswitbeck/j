@@ -4,47 +4,11 @@ import { useQuery } from '@tanstack/vue-query';
 import { useGameStore } from '../stores/gameSlice';
 import QuestionColumn from './questionColumn.vue';
 import QuestionDisplay from './questionDisplay.vue';
-const getRandomCategory: () => number = () => Math.round(Math.random() * 28163);
 
-const categories: number[] = Array(6).fill(null)
-  .map(() => getRandomCategory());
+import { getCategory } from '../utils/getCategory';
+(() => getCategory().then(d => console.log(d)))();
 
-const queryKeys: Map<number, queryStorage> = new Map();
-categories.map(categoryKey => { 
-  queryKeys.set(
-    categoryKey,
-    {
-      queryString: 'https://jservice.io/api/category?id=' + categoryKey.toString()
-    })
-  });
-
-Array.from(queryKeys.entries()).map(([categoryKey,{ queryString }]) => {
-  const queryFn = async () => {
-    const data = await fetch(queryString, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    return await data.json();
-  }
-  const { data, isLoading, isError, isSuccess } = useQuery(
-    [categoryKey.toString()],
-    queryFn,
-    {
-      refetchOnWindowFocs: false,
-      cacheTime: Infinity
-    }
-  );
-  queryKeys.set(categoryKey, {
-    ...queryKeys.get(categoryKey),
-    data,
-    isLoading,
-    isError,
-    isSuccess
-  });
-});
-
-const questionLists = ref(Array.from(queryKeys.values()));
+const questionLists = ref(new Array(6));
 
 const { boardState } = useGameStore();
 </script>
