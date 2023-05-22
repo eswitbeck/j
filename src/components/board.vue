@@ -11,16 +11,12 @@ const { categories, setCategory } = useQuestionStore();
 
 const asyncSet = async (i) => {
   setCategory.value(await getCategory(), i);
-  console.log(categories.value);
 }
 
 for (let i = 0; i < 6; i++) {
   asyncSet(i);
 }
-
 const categoryArray = computed(() => Object.values(categories.value));
-watch(categoryArray, () => console.log(categoryArray.value));
-
 
 </script>
 
@@ -31,6 +27,7 @@ watch(categoryArray, () => console.log(categoryArray.value));
         v-if="boardState === 'select_single'"
         v-for="questionList in categoryArray"
         :questionList="questionList"
+        :key="questionList.index"
       />
       <QuestionDisplay v-else-if="boardState === 'reading'" />
     </div>
@@ -53,4 +50,3 @@ watch(categoryArray, () => console.log(categoryArray.value));
   border: black 1px solid;
 }
 </style>
-}
