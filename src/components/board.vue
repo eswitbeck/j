@@ -9,13 +9,22 @@ import QuestionDisplay from './questionDisplay.vue';
 const { boardState } = useGameStore();
 const { categories, setCategory } = useQuestionStore();
 
-const asyncSet = async (i) => {
-  setCategory.value(await getCategory(), i);
+const asyncSetCategory = async (i) => {
+  const category = await getCategory();
+  category.clues = category.clues.slice()
+    // standardize value
+    .map((clue, i) => ({
+      ...clue,
+      value: (i + 1) * 200 * (boardState.value === "select_double" ? 2 : 1),
+    }));
+  setCategory.value(category, i);
 }
 
+// retrieve and set six categories
 for (let i = 0; i < 6; i++) {
-  asyncSet(i);
+  asyncSetCategory(i);
 }
+
 const categoryArray = computed(() => Object.values(categories.value));
 
 </script>
@@ -24,7 +33,7 @@ const categoryArray = computed(() => Object.values(categories.value));
   <div id="board">
     <div class="board-frame">
       <QuestionColumn
-        v-if="boardState === 'select_single'"
+        v-if="boardState === 'select_single' || boardState === 'select_double'"
         v-for="questionList in categoryArray"
         :questionList="questionList"
         :key="questionList.index"
