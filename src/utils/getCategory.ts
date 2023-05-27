@@ -1,4 +1,8 @@
-import { useQuestionStore } from '../stores/questionsSlice.ts';
+/*
+ * Randomly select and query 5 categories, rejecting any that don't include a
+ * minimum of 5 questions and only selecting a subset of 5 from larger sets
+ * getCategory :: () -> Category
+ */
 
 const getRandomCategory = (): number => Math.round(Math.random() * 28163);
 const url = (num: number): string => `https://jservice.io/api/category?id=${ num.toString() }`;
