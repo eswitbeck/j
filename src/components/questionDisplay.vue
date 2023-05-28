@@ -1,13 +1,40 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useGameStore } from '../stores/gameSlice';
+import { usePlayerStore } from '../stores/playerSlice';
 const { setBoardState, currentQuestion } = useGameStore();
+const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
+
 let status = ref(0);
+// 0 is display question
+// 1 is display answer
+// 2 is return to board and reset
 const toggle = () => status.value = (status.value + 1) % 3;
-// watch status to fire setBoardState
-watch(status, () => (
-  status.value === 2 ? setBoardState.value("select_single") : null)
-);
+
+const handleQuestionEnd = () => {
+  const playersArray = Object.values(players.value);
+  const correct = playersArray.filter(p => p.guessStatus === 'correct');
+  const incorrect = playersArray.filter(p => p.guessStatus === 'incorrect');
+  // add to correct guesses
+  correct.map(p => {
+    includeWinnings.value(currentQuestion.value.value, p.id);
+  });
+  // subtract from incorrect
+  incorrect.map(p => {
+    includeWinnings.value((-1) * currentQuestion.value.value, p.id);
+  });
+  // complete currentQuestion
+  console.log(currentQuestion.value);
+
+  // reset for next question
+  correct.concat(incorrect).map(({ id }) => setPlayerGuessStatus.value('abstain', id));
+  setBoardState.value("select_single");
+}
+
+watch(status, () => {
+  if(status.value === 2) handleQuestionEnd();
+});
+
 </script>
 
 <template>

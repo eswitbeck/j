@@ -16,6 +16,7 @@ const asyncSetCategory = async (i) => {
     .map((clue, i) => ({
       ...clue,
       value: (i + 1) * 200 * (boardState.value === "select_double" ? 2 : 1),
+      complete: false,
     }));
   setCategory.value(category, i);
 }

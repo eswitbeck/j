@@ -33,5 +33,20 @@ export const useQuestionStore = create(set => ({
       },
     }
   })),
+  completeClue: (categoryIndex: number, questionIndex: number) => set(state => ({
+    categories: {
+      ...state.categories,
+      [categoryIndex]: {
+        ...state.categories[categoryIndex],
+        clues:
+          state.categories[categoryIndex].slice().splice(
+            questionIndex, 1, {
+              ...state.categories[categoryIndex].clues[questionIndex],
+              complete: true,
+            }
+          ),
+      },
+    },
+  })),
 }));
 
