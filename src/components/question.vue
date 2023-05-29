@@ -5,23 +5,17 @@ const { setBoardState, setCurrentQuestion } = useGameStore();
 const props = defineProps({
   clue: Object
 });
-// let status = ref(0);
-// const toggle = () => status.value = (status.value + 1) % 3;
+
 const handleClick = () => {
   setBoardState.value("reading");
   setCurrentQuestion.value(props.clue);
+  console.log(props.clue);
 };
 </script>
 
 <template>
-  <!--<div v-if="status === 1" @click="toggle" class="box question">
-    {{ props.clue.question }}
-  </div>
-  <div v-else-if="status === 2" @click="toggle" class="box question">
-    {{ props.clue.answer }}
-  </div>-->
   <div @click="handleClick" class="box question">
-    {{ '$' + props.clue.value }}
+    {{ props.clue.complete ? '' : '$' + props.clue.value }}
   </div>
 </template>
 

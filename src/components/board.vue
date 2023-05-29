@@ -13,10 +13,12 @@ const asyncSetCategory = async (i) => {
   const category = await getCategory();
   category.clues = category.clues.slice()
     // standardize value
-    .map((clue, i) => ({
+    .map((clue, j) => ({
       ...clue,
-      value: (i + 1) * 200 * (boardState.value === "select_double" ? 2 : 1),
+      value: (j + 1) * 200 * (boardState.value === "select_double" ? 2 : 1),
       complete: false,
+      categoryIndex: i,
+      questionIndex: j,
     }));
   setCategory.value(category, i);
 }

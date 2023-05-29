@@ -2,8 +2,10 @@
 import { ref, watch } from 'vue';
 import { useGameStore } from '../stores/gameSlice';
 import { usePlayerStore } from '../stores/playerSlice';
+import { useQuestionStore } from '../stores/questionsSlice';
 const { setBoardState, currentQuestion } = useGameStore();
 const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
+const { completeClue } = useQuestionStore();
 
 let status = ref(0);
 // 0 is display question
@@ -24,7 +26,8 @@ const handleQuestionEnd = () => {
     includeWinnings.value((-1) * currentQuestion.value.value, p.id);
   });
   // complete currentQuestion
-  console.log(currentQuestion.value);
+  completeClue.value(currentQuestion.value.categoryIndex,
+               currentQuestion.value.questionIndex);
 
   // reset for next question
   correct.concat(incorrect).map(({ id }) => setPlayerGuessStatus.value('abstain', id));

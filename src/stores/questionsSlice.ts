@@ -39,12 +39,20 @@ export const useQuestionStore = create(set => ({
       [categoryIndex]: {
         ...state.categories[categoryIndex],
         clues:
-          state.categories[categoryIndex].slice().splice(
-            questionIndex, 1, {
-              ...state.categories[categoryIndex].clues[questionIndex],
-              complete: true,
-            }
-          ),
+          questionIndex === 0 
+          // put item at front
+            ? [{ ...state.categories[categoryIndex].clues[questionIndex], complete: true }]
+                .concat(state.categories[categoryIndex].clues.slice(1))
+            : questionIndex === state.categories[categoryIndex].clues.length - 1
+              // put item last
+                ? state.categories[categoryIndex].clues.slice(0, questionIndex)
+                    .concat([{ ...state.categories[categoryIndex].clues[questionIndex], complete: true }])
+              // put item in middle
+                : state.categories[categoryIndex].clues.slice(0, questionIndex)
+                    .concat(
+                      [{ ...state.categories[categoryIndex].clues[questionIndex], complete: true }],
+                      state.categories[categoryIndex].clues.slice(questionIndex + 1)
+                    ),
       },
     },
   })),
