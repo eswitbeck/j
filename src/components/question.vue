@@ -9,7 +9,6 @@ const props = defineProps({
 const handleClick = () => {
   setBoardState.value("reading");
   setCurrentQuestion.value(props.clue);
-  console.log(props.clue);
 };
 </script>
 
