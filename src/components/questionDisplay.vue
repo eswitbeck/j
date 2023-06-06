@@ -3,9 +3,9 @@ import { ref, watch } from 'vue';
 import { useGameStore } from '../stores/gameSlice';
 import { usePlayerStore } from '../stores/playerSlice';
 import { useQuestionStore } from '../stores/questionsSlice';
-const { setBoardState, currentQuestion } = useGameStore();
+const { boardState, setBoardState, mode, setMode, currentQuestion } = useGameStore();
 const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
-const { completeClue } = useQuestionStore();
+const { categories, completeClue } = useQuestionStore();
 
 let status = ref(0);
 // 0 is display question
@@ -31,7 +31,18 @@ const handleQuestionEnd = () => {
 
   // reset for next question
   correct.concat(incorrect).map(({ id }) => setPlayerGuessStatus.value('abstain', id));
-  setBoardState.value("select_single");
+  // either set to single or, if done, double
+  const flatClues = Object.values(categories.value).map(c => c.clues).flat();
+  if (flatClues.some(c => !c.locked)) setBoardState.value("select_single");
+  else {
+    if (mode.value === 'single') {
+      setMode.value('double');
+      setBoardState.value('select_double');
+    } else {
+      setMode.value('final');
+      setBoardState.value('final');
+    }
+  }
 }
 
 watch(status, () => {
