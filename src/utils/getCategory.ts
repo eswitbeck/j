@@ -4,6 +4,12 @@
  * getCategory :: () -> Category
  */
 
+
+import { useGameStore } from '../stores/gameSlice';
+import { useQuestionStore } from '../stores/questionsSlice';
+const { boardState } = useGameStore();
+const { setCategory } = useQuestionStore();
+
 const getRandomCategory = (): number => Math.round(Math.random() * 28163);
 const url = (num: number): string => `https://jservice.io/api/category?id=${ num.toString() }`;
 const getQuestionData = async (url: string) => (
@@ -14,7 +20,7 @@ const getQuestionData = async (url: string) => (
   }).then(res => res.json())
 );
 
-export const getCategory = async () => {
+const getCategory = async () => {
   const category = await getQuestionData(url(getRandomCategory()));
   if (category.clues_count < 5) return getCategory();
   else if (category.clues_count === 5) return category;
@@ -23,4 +29,18 @@ export const getCategory = async () => {
     const startIndex = Math.round(Math.random() * (categoryCount - 1)) * 5; 
     return { ...category, clues: category.clues.slice(startIndex, startIndex + 5) };
   } else return getCategory();
+}
+
+export const asyncSetCategory = async (i) => {
+  const category = await getCategory();
+  category.clues = category.clues.slice()
+    // standardize value
+    .map((clue, j) => ({
+      ...clue,
+      value: (j + 1) * 200 * (boardState.value === "select_double" ? 2 : 1),
+      complete: false,
+      categoryIndex: i,
+      questionIndex: j,
+    }));
+  setCategory.value(category, i);
 }

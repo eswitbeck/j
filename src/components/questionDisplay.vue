@@ -3,6 +3,9 @@ import { ref, watch } from 'vue';
 import { useGameStore } from '../stores/gameSlice';
 import { usePlayerStore } from '../stores/playerSlice';
 import { useQuestionStore } from '../stores/questionsSlice';
+
+import { asyncSetCategory } from '../utils/getCategory';
+
 const { boardState, setBoardState, mode, setMode, currentQuestion } = useGameStore();
 const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
 const { categories, completeClue } = useQuestionStore();
@@ -33,10 +36,13 @@ const handleQuestionEnd = () => {
   correct.concat(incorrect).map(({ id }) => setPlayerGuessStatus.value('abstain', id));
   // either set to single or, if done, double
   const flatClues = Object.values(categories.value).map(c => c.clues).flat();
-  if (flatClues.some(c => !c.locked)) setBoardState.value("select_single");
+  if (flatClues.some(c => !c.complete)) setBoardState.value(mode.value);
   else {
-    if (mode.value === 'single') {
-      setMode.value('double');
+    if (mode.value === 'select_single') { // from single to double
+      for (let i = 6; i < 12; i++) {
+        asyncSetCategory(i);
+      }
+      setMode.value('select_double');
       setBoardState.value('select_double');
     } else {
       setMode.value('final');

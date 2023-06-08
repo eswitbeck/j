@@ -4,11 +4,11 @@ type BoardState = | "select_single"
                   | "select_double"
                   | "reading"
                   | "final"
-type Mode = | "single"
-            | "double"
+type Mode = | "select_single"
+            | "select_double"
             | "final"
 export const useGameStore = create(set => ({
-  mode: "single",
+  mode: "select_single",
   boardState: "select_single",
   setBoardState: (boardState: BoardState) => set(state => ({
     boardState: boardState

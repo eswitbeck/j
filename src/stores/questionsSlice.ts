@@ -13,6 +13,12 @@ export const useQuestionStore = create(set => ({
     3: loaderCategory,
     4: loaderCategory,
     5: loaderCategory,
+    6: loaderCategory,
+    7: loaderCategory,
+    8: loaderCategory,
+    9: loaderCategory,
+    10: loaderCategory,
+    11: loaderCategory,
   },
   setCategory: (category, index) => set(state => ({
     categories: {
