@@ -5,6 +5,7 @@ import { useQuestionStore } from '../stores/questionsSlice';
 import { asyncSetCategory } from '../utils/getCategory';
 import QuestionColumn from './questionColumn.vue';
 import QuestionDisplay from './questionDisplay.vue';
+import FinalDisplay from './final.vue';
 
 const { boardState } = useGameStore();
 const { categories, setCategory } = useQuestionStore();
@@ -32,6 +33,7 @@ const doubleCategories = computed(() => Object.values(categories.value).slice(6)
         :key="questionList.index"
       />
       <QuestionDisplay v-else-if="boardState === 'reading'" />
+      <FinalDisplay v-else-if="boardState === 'final'" />
     </div>
   </div>
 </template>
