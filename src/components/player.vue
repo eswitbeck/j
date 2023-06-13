@@ -13,6 +13,7 @@ const props = defineProps({
 });
 
 const status = computed(() => players.value[props.player.id].guessStatus);
+const finalBet = computed(() => players.value[props.player.id].finalBet);
 
 const handleCorrect = id => {
   if (status.value === 'correct') setPlayerGuessStatus.value('abstain', id);
@@ -21,6 +22,12 @@ const handleCorrect = id => {
 const handleIncorrect = id => {
   if (status.value === 'incorrect') setPlayerGuessStatus.value('abstain', id);
   else setPlayerGuessStatus.value('incorrect', id);
+}
+
+const handleBet = bet => {
+// TODO replace with state update
+  console.log(bet);
+  console.log(finalBet.value);
 }
 
 // computed for legal state for correct/not
@@ -52,9 +59,11 @@ const inputting = computed(() => (boardState.value === 'reading' ||
     <input
       v-if="boardState === 'final'"
       type="number"
+      v-model="bet"
+      @input="() => handleBet(bet)"
     >
-    <p>${{ props.player.winnings }}</p>
-    <p>{{ props.player.name }}</p>
+    <p class="amount">${{ props.player.winnings }}</p>
+    <p class="name">{{ props.player.name }}</p>
   </div>
 </template>
 
@@ -62,20 +71,29 @@ const inputting = computed(() => (boardState.value === 'reading' ||
 .player {
   display: grid;
   gap: 5px;
-  grid-template-columns: 1fr 1fr; /* grid template names? */
+  grid-template-areas: ". . . . amount amount name name name name";
   align-items: center;
   padding: 5px;
   p {
     text-align: center;
   }
-  button {
-    border-radius: 5px;
+  .name {
+    grid-area: name;
+  }
+  .amount {
+    grid-area: amount;
   }
   button.correct {
+    grid-area: correct;
     background-color: green;
   }
   button.incorrect {
+    grid-area: incorrect;
+    background-color: green;
     background-color: red;
+  }
+  input {
+    grid-area: "input";
   }
 }
 
@@ -84,12 +102,11 @@ const inputting = computed(() => (boardState.value === 'reading' ||
 }
 
 .player.reading {
-  grid-template-columns: 1fr 1fr 2fr 4fr;
+  grid-template-areas: "correct incorrect . . amount amount name name name name";
 }
 
 .player.final {
-  grid-template-columns: 1fr 1fr 2fr 2fr 4fr;
+  grid-template-areas: "correct incorrect input input amount amount name name name name";
 }
-
 
 </style>
