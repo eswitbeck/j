@@ -40,7 +40,7 @@ const handleInput = (e) => {
   } else {
     bet.value = e.target.value;
   }
-  setFinalBet.value(bet.value, props.player.id)
+  setFinalBet.value(Number(bet.value), props.player.id)
   e.target.value = bet.value;
 }
 
