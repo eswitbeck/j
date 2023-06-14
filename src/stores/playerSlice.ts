@@ -43,4 +43,15 @@ export const usePlayerStore = create(set => ({
       },
     }))
   ),
+  setFinalBet: (bet: number, id: string) => (
+    set(state => ({
+      players: {
+        ...state.players,
+        [id]: {
+          ...state.players[id],
+          finalBet: bet,
+        },
+      },
+    }))
+  ),
 }));

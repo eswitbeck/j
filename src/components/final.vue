@@ -27,11 +27,11 @@ const handleQuestionEnd = () => {
   // add to correct guesses
   //TODO map to bets
   correct.map(p => {
-    includeWinnings.value(0, p.id);
+    includeWinnings.value(p.finalBet, p.id);
   });
   // subtract from incorrect
   incorrect.map(p => {
-    includeWinnings.value((-1) * 0, p.id);
+    includeWinnings.value((-1) * p.finalBet, p.id);
   });
   // reset for next question
   correct.concat(incorrect).map(({ id }) => setPlayerGuessStatus.value('abstain', id));
@@ -39,7 +39,7 @@ const handleQuestionEnd = () => {
 }
 
 watch(status, () => {
-  if(status.value === 3) handleQuestionEnd();
+  if(status.value === 2) handleQuestionEnd();
 });
 
 </script>

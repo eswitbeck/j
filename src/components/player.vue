@@ -5,7 +5,7 @@ import type { Player } from '../types';
 import { usePlayerStore } from '../stores/playerSlice';
 import { useGameStore } from '../stores/gameSlice';
 
-const { players, setPlayerGuessStatus } = usePlayerStore();
+const { players, setPlayerGuessStatus, setFinalBet } = usePlayerStore();
 const { boardState } = useGameStore();
 
 const props = defineProps({
@@ -14,6 +14,7 @@ const props = defineProps({
 
 const status = computed(() => players.value[props.player.id].guessStatus);
 const finalBet = computed(() => players.value[props.player.id].finalBet);
+const winnings = computed(() => players.value[props.player.id].winnings);
 
 const handleCorrect = id => {
   if (status.value === 'correct') setPlayerGuessStatus.value('abstain', id);
@@ -22,12 +23,6 @@ const handleCorrect = id => {
 const handleIncorrect = id => {
   if (status.value === 'incorrect') setPlayerGuessStatus.value('abstain', id);
   else setPlayerGuessStatus.value('incorrect', id);
-}
-
-const handleBet = bet => {
-// TODO replace with state update
-  console.log(bet);
-  console.log(finalBet.value);
 }
 
 // computed for legal state for correct/not
@@ -59,8 +54,10 @@ const inputting = computed(() => (boardState.value === 'reading' ||
     <input
       v-if="boardState === 'final'"
       type="number"
+      min=0
+      max="winnings"
       v-model="bet"
-      @input="() => handleBet(bet)"
+      @input="() => setFinalBet(bet, props.player.id)"
     >
     <p class="amount">${{ props.player.winnings }}</p>
     <p class="name">{{ props.player.name }}</p>
