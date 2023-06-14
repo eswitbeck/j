@@ -38,7 +38,7 @@ const handleQuestionEnd = () => {
 }
 
 watch(status, () => {
-  if(status.value === 2) handleQuestionEnd();
+  if(status.value === 3) handleQuestionEnd();
 });
 
 </script>
