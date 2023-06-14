@@ -8,7 +8,7 @@
 import { useGameStore } from '../stores/gameSlice';
 import { useQuestionStore } from '../stores/questionsSlice';
 const { boardState } = useGameStore();
-const { setCategory } = useQuestionStore();
+const { setCategory, setFinal } = useQuestionStore();
 
 const getRandomCategory = (): number => Math.round(Math.random() * 28163);
 const url = (num: number): string => `https://jservice.io/api/category?id=${ num.toString() }`;
@@ -43,4 +43,10 @@ export const asyncSetCategory = async (i) => {
       questionIndex: j,
     }));
   setCategory.value(category, i);
+}
+
+export const getFinal = async () => {
+  const url: string = 'https://jservice.io/api/final';
+  const final = await getQuestionData(url);
+  setFinal.value(final[0]);
 }

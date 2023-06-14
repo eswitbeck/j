@@ -62,5 +62,9 @@ export const useQuestionStore = create(set => ({
       },
     },
   })),
+  final: null,
+  setFinal: (final) => set(state => ({
+    final: final,
+  })),
 }));
 

@@ -16,6 +16,7 @@ export const usePlayerStore = create(set => ({
           position: Object.values(state.players).length,
           id,
           guessStatus: 'abstain',
+          finalBet: 0,
         },
       }
     }))
@@ -38,6 +39,17 @@ export const usePlayerStore = create(set => ({
         [id]: {
           ...state.players[id],
           winnings: state.players[id].winnings + amount,
+        },
+      },
+    }))
+  ),
+  setFinalBet: (bet: number, id: string) => (
+    set(state => ({
+      players: {
+        ...state.players,
+        [id]: {
+          ...state.players[id],
+          finalBet: bet,
         },
       },
     }))
