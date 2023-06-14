@@ -25,7 +25,6 @@ const handleQuestionEnd = () => {
   const correct = playersArray.filter(p => p.guessStatus === 'correct');
   const incorrect = playersArray.filter(p => p.guessStatus === 'incorrect');
   // add to correct guesses
-  //TODO map to bets
   correct.map(p => {
     includeWinnings.value(p.finalBet, p.id);
   });

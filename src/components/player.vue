@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import type { Ref } from 'vue';
 import type { Player } from '../types';
 import { usePlayerStore } from '../stores/playerSlice';
@@ -29,6 +29,21 @@ const handleIncorrect = id => {
 const inputting = computed(() => (boardState.value === 'reading' ||
                                  boardState.value === 'final'));
 
+const bet = ref(0);
+
+const handleInput = (e) => {
+  const newBet = e.target.value;
+  if (Number(newBet) <= 0 || winnings.value < 0) {
+    bet.value = 0;
+  } else if (Number(newBet) > winnings.value) {
+    bet.value = winnings.value;
+  } else {
+    bet.value = e.target.value;
+  }
+  setFinalBet.value(bet.value, props.player.id)
+  e.target.value = bet.value;
+}
+
 </script>
 
 <template>
@@ -56,8 +71,8 @@ const inputting = computed(() => (boardState.value === 'reading' ||
       type="number"
       min=0
       max="winnings"
-      v-model="bet"
-      @input="() => setFinalBet(bet, props.player.id)"
+      value="bet"
+      @input="handleInput"
     >
     <p class="amount">${{ props.player.winnings }}</p>
     <p class="name">{{ props.player.name }}</p>
