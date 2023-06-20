@@ -35,6 +35,7 @@ header {
   align-items: center;
   justify-content: center;
   border-bottom: $border; 
+  background-color: $primaryGrey;
   * {
     margin: $internalMargin;
   }
@@ -44,6 +45,7 @@ main {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 60%  1fr;
+  background-color: $tertiaryGrey;
 }
 
 footer {
@@ -52,6 +54,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $secondaryGrey;
 }
 
 </style>

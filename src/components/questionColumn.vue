@@ -32,10 +32,13 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $lightBlue;
+  color: $yellow;
 }
 
 .box.category {
   margin-bottom: $internalMargin;
+  color: $primaryWhite;
   p {
     text-align: center;
     font-family: sans-serif;

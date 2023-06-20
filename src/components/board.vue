@@ -49,6 +49,7 @@ const doubleCategories = computed(() => Object.values(categories.value).slice(6)
 }
 
 .board-frame {
+  background-color: $primaryBlack;
   display: flex;
   padding: $internalPadding;
   justify-content: center;

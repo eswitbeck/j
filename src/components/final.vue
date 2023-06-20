@@ -73,6 +73,8 @@ watch(status, () => {
   justify-content: center;
   padding: $internalPadding;
   box-sizing: border-box;
+  color: $secondaryWhite;
+  background-color: $lightBlue;
   
   p {
     text-align: center;
