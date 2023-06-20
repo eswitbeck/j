@@ -21,6 +21,7 @@ import Players from './components/players.vue';
 </template>
 
 <style lang="scss">
+@use 'variables' as *;
 
 body {
   margin: 0;
@@ -28,32 +29,26 @@ body {
 }
 
 header {
-  margin: 0px;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: solid 1px black;
+  border-bottom: $border; 
+  * {
+    margin: $internalMargin;
+  }
 }
 
 main {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 3fr 2fr;
-}
-
-#players {
-  margin: 20px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: solid 1px black;
+  grid-template-columns: 60%  1fr;
 }
 
 footer {
-  border-top: solid 1px black;
-  padding: 15px;
+  border-top: $border;
+  padding: $externalPadding;
   display: flex;
   align-items: center;
   justify-content: center;

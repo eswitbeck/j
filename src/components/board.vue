@@ -39,18 +39,19 @@ const doubleCategories = computed(() => Object.values(categories.value).slice(6)
 </template>
 
 <style scoped lang="scss">
+@use '../variables.scss' as *;
 
 #board {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: $externalPadding;
 }
 
 .board-frame {
   display: flex;
-  padding: 15px;
+  padding: $internalPadding;
   justify-content: center;
-  border: black 1px solid;
+  border: $border; 
 }
 </style>

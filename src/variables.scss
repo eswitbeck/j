@@ -1,0 +1,14 @@
+$black: black;
+$red: red;
+$green: green;
+
+$border: solid 1px $black;
+
+$internalPadding: 0.75em;
+$externalPadding: 1.25em;
+
+$internalMargin: 0.5em;
+$externalMargin: 1.25em;
+
+$boxWidth: 10em;
+$boxHeight: calc(3 / 5 * $boxWidth);

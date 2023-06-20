@@ -17,19 +17,3 @@ const handleClick = () => {
     {{ props.clue.complete ? '' : '$' + props.clue.value }}
   </div>
 </template>
-
-<style scoped lang="scss">
-.box {
-  height: 90px;
-  width: 150px;
-  margin: 5px;
-  border: solid 1px black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box.question {
-}
-
-</style>

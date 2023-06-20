@@ -25,11 +25,15 @@ const handleClick = () => {
   </div>
 </template>
 <style lang="scss">
+@use '../variables.scss' as *;
+
 #players {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding: $externalPadding;
+  margin: $externalMargin;
+  border: solid 1px black;
 
   .inner {
     width: 100%;
@@ -38,11 +42,10 @@ const handleClick = () => {
       display: flex;
       flex-direction: column;
       align-items: space-evenly;
-
-      margin: 5px;
-    }
-
-    > button {
+      margin: $internalMargin;
+      > * {
+        margin: $internalMargin;
+      }
     }
   }
 

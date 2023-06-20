@@ -20,23 +20,22 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
-
-.question-column {
-}
+@use '../variables.scss' as *;
 
 .box {
-  height: 90px;
-  width: 150px;
-  margin: 5px;
-  border: solid 1px black;
+  height: $boxHeight;
+  width: $boxWidth;
+  margin: $internalMargin;
+  border: $border; 
+  padding: $internalPadding;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .box.category {
-  margin-bottom: 15px;
-
+  margin-bottom: $internalMargin;
   p {
     text-align: center;
     font-family: sans-serif;

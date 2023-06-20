@@ -61,23 +61,21 @@ watch(status, () => {
 </template>
 
 <style scoped lang="scss">
+@use '../variables.scss' as *;
+
 .question-display {
-  --margin: 5px;
-  --extra-margin: 15px;
-  --height: 90px;
-  --width: 150px;
-  height: calc(6 * var(--height) + 3 * var(--margin));
-  width: calc(6 * (var(--width) + var(--margin)));
-  border: solid black 1px;
-  margin: 5px;
+  height: calc(6 * $boxHeight + 5 * $internalMargin);
+  width: calc(6 * $boxWidth + 10 * $internalMargin);
+  border: $border;
+  margin: $internalMargin;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: $internalPadding;
+  box-sizing: border-box;
   
   p {
     text-align: center;
   }
 }
 </style>
-
