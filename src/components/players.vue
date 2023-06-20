@@ -33,11 +33,11 @@ const handleClick = () => {
   align-items: center;
   padding: $externalPadding;
   margin: $externalMargin;
-  border: solid 1px black;
+  border: $border;
 
   .inner {
     width: 100%;
-    border: solid 1px lightgrey;
+    border: $border;
     > * {
       display: flex;
       flex-direction: column;
