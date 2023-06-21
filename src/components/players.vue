@@ -18,7 +18,7 @@ const handleClick = () => {
     <div class="inner">
       <span> 
         <input v-model="playerName" placeholder="Name" />
-        <button @click="handleClick">Add Player</button>
+        <button @click="handleClick">Add</button>
       </span>
       <PlayerList />
     </div>
@@ -31,11 +31,14 @@ const handleClick = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: $externalPadding;
-  margin: $externalMargin;
-  border: $border;
+  border: none;
+  box-sizing: border-box;
+  height: 100%;
 
   .inner {
+    height: calc($displayHeight + 2 * $externalPadding);
     width: 100%;
     border: $border;
     > * {
@@ -47,6 +50,13 @@ const handleClick = () => {
         margin: $internalMargin;
       }
     }
+    > span {
+     flex-direction: row;
+     justify-content: space-between;
+     input {
+       width: 100%;
+     }
+   }
   }
 
 

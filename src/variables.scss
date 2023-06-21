@@ -23,3 +23,6 @@ $externalMargin: calc(1.5 * $marginRef);
 
 $boxWidth: 160px;
 $boxHeight: calc(3 / 5 * $boxWidth);
+
+$displayHeight: calc(6 * $boxHeight + 5 * $marginRef);
+$displayWidth: calc(6 * $boxWidth + 5 * $marginRef);
