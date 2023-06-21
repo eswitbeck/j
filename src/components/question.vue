@@ -13,7 +13,13 @@ const handleClick = () => {
 </script>
 
 <template>
-  <div @click="handleClick" class="box question">
+  <div
+    v-if="props.clue?.value"
+    @click="handleClick"
+    class="box question"
+  >
     {{ props.clue.complete ? '' : '$' + props.clue.value }}
+  </div>
+  <div v-else class="box question">
   </div>
 </template>
