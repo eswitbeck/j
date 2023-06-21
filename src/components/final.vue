@@ -64,8 +64,8 @@ watch(status, () => {
 @use '../variables.scss' as *;
 
 .question-display {
-  height: calc(6 * $boxHeight + 5 * $internalMargin);
-  width: calc(6 * $boxWidth + 10 * $internalMargin);
+  height: calc(6 * $boxHeight + 5 * $marginRef);
+  width: calc(6 * $boxWidth + 5 * $marginRef);
   border: $border;
   margin: $internalMargin;
   display: flex;

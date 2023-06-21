@@ -34,6 +34,8 @@ const props = defineProps({
   justify-content: center;
   background-color: $lightBlue;
   color: $yellow;
+  font-size: 2em;
+  font-weight: 900;
 }
 
 .box.category {
@@ -42,6 +44,7 @@ const props = defineProps({
   p {
     text-align: center;
     font-family: sans-serif;
+    font-size: 1.25rem;
   }
 }
 

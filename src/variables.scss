@@ -14,11 +14,12 @@ $black: $primaryBlack;
 
 $border: solid 1px $black;
 
-$internalPadding: 0.75em;
-$externalPadding: 1.25em;
+$internalPadding: 15px;
+$externalPadding: 20px;
 
-$internalMargin: 0.5em;
-$externalMargin: 1.25em;
+$marginRef: 10px;
+$internalMargin: $marginRef calc($marginRef / 2);
+$externalMargin: calc(1.5 * $marginRef);
 
-$boxWidth: 10em;
+$boxWidth: 160px;
 $boxHeight: calc(3 / 5 * $boxWidth);
