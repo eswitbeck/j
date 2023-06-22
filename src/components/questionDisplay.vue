@@ -4,7 +4,7 @@ import { useGameStore } from '../stores/gameSlice';
 import { usePlayerStore } from '../stores/playerSlice';
 import { useQuestionStore } from '../stores/questionsSlice';
 
-import { asyncSetCategory } from '../utils/getCategory';
+import { getDouble } from '../utils/getCategory';
 
 const { boardState, setBoardState, mode, setMode, currentQuestion } = useGameStore();
 const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
@@ -39,14 +39,10 @@ const handleQuestionEnd = () => {
   if (flatClues.some(c => !c.complete)) setBoardState.value(mode.value);
   else {
     if (mode.value === 'select_single') { // from single to double
-      for (let i = 6; i < 12; i++) {
-        asyncSetCategory(i);
-      }
+      getDouble();
       setMode.value('select_double');
-      setBoardState.value('select_double');
     } else {
       setMode.value('final');
-      setBoardState.value('final');
     }
   }
 }
