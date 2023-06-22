@@ -42,7 +42,6 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: $border; 
   background-color: $darkBlue;
   color: $primaryWhite;
   * {
@@ -58,7 +57,6 @@ main {
 }
 
 footer {
-  border-top: $border;
   padding: $externalPadding;
   display: flex;
   align-items: center;

@@ -15,6 +15,8 @@ const { players } = usePlayerStore();
 </template>
 
 <style lang="scss">
+@use '../variables.scss' as *;
 #player-list {
+  border-radius: $borderRadius;
 }
 </style>

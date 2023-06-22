@@ -40,15 +40,16 @@ const handleClick = () => {
   .inner {
     height: calc($displayHeight + 2 * ($externalPadding + $marginRef));
     width: 100%;
-    border: $border;
-    background-color: $secondaryBlack;
+    background-color: $secondaryWhite;
+    border-radius: $borderRadius;
+    box-shadow: $shadow;
     > * {
       display: flex;
       flex-direction: column;
       align-items: space-evenly;
       margin: $internalMargin;
       > * {
-        margin: $internalMargin;
+        margin: rinternalMargin;
       }
     }
     > span {
