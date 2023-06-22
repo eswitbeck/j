@@ -51,6 +51,7 @@ const doubleCategories = computed(() => Object.values(categories.value).slice(6)
 .board-frame {
   background-color: $primaryBlack;
   display: flex;
+  max-width: $maxBoard;
   padding: $internalPadding;
   justify-content: center;
   border: $border; 

@@ -114,8 +114,11 @@ const handleInput = (e) => {
   }
 }
 
+.player {
+  background-color: $primaryGrey;
+}
 .player:nth-of-type(even) {
-  background-color: lightgrey;
+  background-color: $tertiaryGrey;
 }
 
 .player.reading {

@@ -25,6 +25,7 @@ const props = defineProps({
 .box {
   height: $boxHeight;
   width: $boxWidth;
+  max-width: $maxQuestion;
   margin: $internalMargin;
   border: $border; 
   padding: $internalPadding;

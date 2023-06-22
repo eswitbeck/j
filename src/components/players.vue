@@ -38,9 +38,10 @@ const handleClick = () => {
   height: 100%;
 
   .inner {
-    height: calc($displayHeight + 2 * $externalPadding);
+    height: calc($displayHeight + 2 * ($externalPadding + $marginRef));
     width: 100%;
     border: $border;
+    background-color: $secondaryBlack;
     > * {
       display: flex;
       flex-direction: column;

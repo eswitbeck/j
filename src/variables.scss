@@ -26,3 +26,6 @@ $boxHeight: calc(3 / 5 * $boxWidth);
 
 $displayHeight: calc(6 * $boxHeight + 5 * $marginRef);
 $displayWidth: calc(6 * $boxWidth + 5 * $marginRef);
+
+$maxBoard: 75vw;
+$maxQuestion: calc($maxBoard / 6 - 7 * $marginRef);

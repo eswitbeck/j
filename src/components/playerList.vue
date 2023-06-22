@@ -17,5 +17,4 @@ const { players } = usePlayerStore();
 <style lang="scss">
 #player-list {
 }
-
 </style>
