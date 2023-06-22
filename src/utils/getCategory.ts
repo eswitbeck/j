@@ -31,7 +31,7 @@ const getCategory = async () => {
   } else return getCategory();
 }
 
-export const asyncSetCategory = async (i) => {
+const asyncSetCategory = async (i) => {
   const category = await getCategory();
   category.clues = category.clues.slice()
     // standardize value
@@ -43,6 +43,18 @@ export const asyncSetCategory = async (i) => {
       questionIndex: j,
     }));
   setCategory.value(category, i);
+}
+
+export const getSingle = () => {
+  for (let i = 0; i < 6; i++) {
+    asyncSetCategory(i);
+  }
+}
+
+export const getDouble = () => {
+  for (let i = 6; i < 12; i++) {
+    asyncSetCategory(i);
+  }
 }
 
 export const getFinal = async () => {

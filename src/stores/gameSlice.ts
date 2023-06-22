@@ -15,7 +15,8 @@ export const useGameStore = create(set => ({
     boardState: boardState
   })),
   setMode: (mode: Mode) => set(state => ({
-    mode: mode
+    mode: mode,
+    boardState: mode,
   })),
   currentQuestion: {
     question: '',

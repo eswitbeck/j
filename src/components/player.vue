@@ -80,12 +80,14 @@ const handleInput = (e) => {
 </template>
 
 <style scoped lang="scss">
+@use '../variables.scss' as *;
+
 .player {
   display: grid;
-  gap: 5px;
+  gap: $internalMargin;
   grid-template-areas: ". . . . amount amount name name name name";
   align-items: center;
-  padding: 5px;
+  padding: $internalMargin;
   p {
     text-align: center;
   }
@@ -95,22 +97,28 @@ const handleInput = (e) => {
   .amount {
     grid-area: amount;
   }
+  button, button.correct, button.incorrect {
+    padding: $internalPadding;
+    border: none;
+  }
   button.correct {
     grid-area: correct;
-    background-color: green;
+    background-color: $green;
   }
   button.incorrect {
     grid-area: incorrect;
-    background-color: green;
-    background-color: red;
+    background-color: $red;
   }
   input {
     grid-area: "input";
   }
 }
 
+.player {
+  background-color: $primaryGrey;
+}
 .player:nth-of-type(even) {
-  background-color: lightgrey;
+  background-color: $tertiaryGrey;
 }
 
 .player.reading {

@@ -18,32 +18,47 @@ const handleClick = () => {
     <div class="inner">
       <span> 
         <input v-model="playerName" placeholder="Name" />
-        <button @click="handleClick">Add Player</button>
+        <button @click="handleClick">Add</button>
       </span>
       <PlayerList />
     </div>
   </div>
 </template>
 <style lang="scss">
+@use '../variables.scss' as *;
+
 #players {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  justify-content: center;
+  padding: $externalPadding;
+  border: none;
+  box-sizing: border-box;
+  height: 100%;
 
   .inner {
+    height: calc($displayHeight + 2 * ($externalPadding + $marginRef));
     width: 100%;
-    border: solid 1px lightgrey;
+    background-color: $secondaryWhite;
+    border-radius: $borderRadius;
+    box-shadow: $shadow;
     > * {
       display: flex;
       flex-direction: column;
       align-items: space-evenly;
-
-      margin: 5px;
+      margin: $internalMargin;
+      > * {
+        margin: rinternalMargin;
+      }
     }
-
-    > button {
-    }
+    > span {
+     flex-direction: row;
+     justify-content: space-between;
+     input {
+       width: 100%;
+     }
+   }
   }
 
 

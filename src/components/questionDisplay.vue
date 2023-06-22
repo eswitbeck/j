@@ -4,7 +4,7 @@ import { useGameStore } from '../stores/gameSlice';
 import { usePlayerStore } from '../stores/playerSlice';
 import { useQuestionStore } from '../stores/questionsSlice';
 
-import { asyncSetCategory } from '../utils/getCategory';
+import { getDouble } from '../utils/getCategory';
 
 const { boardState, setBoardState, mode, setMode, currentQuestion } = useGameStore();
 const { players, includeWinnings, setPlayerGuessStatus } = usePlayerStore();
@@ -39,14 +39,10 @@ const handleQuestionEnd = () => {
   if (flatClues.some(c => !c.complete)) setBoardState.value(mode.value);
   else {
     if (mode.value === 'select_single') { // from single to double
-      for (let i = 6; i < 12; i++) {
-        asyncSetCategory(i);
-      }
+      getDouble();
       setMode.value('select_double');
-      setBoardState.value('select_double');
     } else {
       setMode.value('final');
-      setBoardState.value('final');
     }
   }
 }
@@ -69,19 +65,20 @@ watch(status, () => {
 </template>
 
 <style scoped lang="scss">
+@use '../variables.scss' as *;
+
 .question-display {
-  --margin: 5px;
-  --extra-margin: 15px;
-  --height: 90px;
-  --width: 150px;
-  height: calc(6 * var(--height) + 3 * var(--margin));
-  width: calc(6 * (var(--width) + var(--margin)));
-  border: solid black 1px;
-  margin: 5px;
+  height: $displayHeight;
+  width: $displayWidth;
+  border: $border;
+  margin: $internalMargin;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: $internalPadding;
+  box-sizing: border-box;
+  color: $secondaryWhite;
+  background-color: $lightBlue;
   
   p {
     text-align: center;

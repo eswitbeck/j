@@ -16,47 +16,52 @@ import Players from './components/players.vue';
     <Players />
   </main>
   <footer>
-    Built with Vue, Vue Query, Zustand, and love ❤️
+    Built with Vue + Zustand
   </footer>
 </template>
 
 <style lang="scss">
+@use 'variables' as *;
 
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15% 1fr 10%;
+  height: 100%;
 }
 
 header {
-  margin: 0px;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: solid 1px black;
+  background-color: $darkBlue;
+  color: $primaryWhite;
+  * {
+    margin: $internalMargin;
+  }
 }
 
 main {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 3fr 2fr;
-}
-
-#players {
-  margin: 20px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: solid 1px black;
+  grid-template-columns: 60%  1fr;
+  background-color: $tertiaryGrey;
 }
 
 footer {
-  border-top: solid 1px black;
-  padding: 15px;
+  padding: $externalPadding;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $secondaryGrey;
 }
 
 </style>
