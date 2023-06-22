@@ -2,7 +2,7 @@ import create from 'vue-zustand';
 
 const loaderCategory = {
   title: 'loading...',
-  clues: new Array(5).fill({ clue: null }),
+  clues: new Array(5).fill({ clue: null, complete: true }),
 }
 
 export const useQuestionStore = create(set => ({
