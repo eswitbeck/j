@@ -1,9 +1,27 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import Question from './question.vue';
+import { asyncSetCategory } from '../utils/getCategory';
+import { useQuestionStore } from '../stores/questionsSlice';
+import { useGameStore } from '../stores/gameSlice';
+
+const { boardState } = useGameStore();
+
 const props = defineProps({
-  questionList: Object
+  questionList: Object,
+  secondIndex: Number
 });
+
+const { setCategoryToLoad } = useQuestionStore();
+const handleReload = () => {
+  const modeAddition = boardState.value === 'select_single'
+    ? 0
+    : 6;
+  const index = props.secondIndex + modeAddition;
+  setCategoryToLoad.value(index);
+  asyncSetCategory(index);
+}
+
 </script>
 
 <template>
@@ -12,6 +30,9 @@ const props = defineProps({
       <p>
         {{ props.questionList.title.toUpperCase() }}
       </p>
+      <button @click="handleReload">
+        reset
+      </button>
     </div>
     <div>
       <Question v-for="clue in props.questionList.clues" :clue="clue"/>
@@ -21,6 +42,12 @@ const props = defineProps({
 
 <style lang="scss">
 @use '../variables.scss' as *;
+
+.box.category button {
+  position: absolute;
+  top: 5px;
+  left: calc($boxWidth - 70px);
+}
 
 .box {
   height: $boxHeight;
@@ -42,6 +69,7 @@ const props = defineProps({
 .box.category {
   margin-bottom: $internalMargin;
   color: $primaryWhite;
+  position: relative;
   p {
     text-align: center;
     font-family: sans-serif;

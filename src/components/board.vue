@@ -26,11 +26,12 @@ const doubleCategories = computed(() => Object.values(categories.value).slice(6)
     <div class="board-frame">
       <QuestionColumn
         v-if="boardState === 'select_single' || boardState === 'select_double'"
-        v-for="questionList in boardState === 'select_single'
+        v-for="(questionList, secondIndex) in boardState === 'select_single'
                                 ? singleCategories
                                 : doubleCategories"
         :questionList="questionList"
         :key="questionList.index"
+        :secondIndex="secondIndex"
       />
       <QuestionDisplay v-else-if="boardState === 'reading'" />
       <FinalDisplay v-else-if="boardState === 'final'" />

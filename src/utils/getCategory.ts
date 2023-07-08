@@ -31,7 +31,7 @@ const getCategory = async () => {
   } else return getCategory();
 }
 
-const asyncSetCategory = async (i) => {
+export const asyncSetCategory = async (i) => {
   const category = await getCategory();
   category.clues = category.clues.slice()
     // standardize value

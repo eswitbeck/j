@@ -30,6 +30,15 @@ export const useQuestionStore = create(set => ({
       },
     }
   })),
+  setCategoryToLoad: (index) => set(state => ({
+      categories: {
+        ...state.categories,
+        [index]: {
+          ...loaderCategory,
+          index
+        }
+      }
+  })),
   toggleCategoryLock: (index) => set(state => ({
     categories: {
       ...state.categories,
