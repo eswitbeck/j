@@ -3,6 +3,9 @@ import { computed } from 'vue';
 import Question from './question.vue';
 import { asyncSetCategory } from '../utils/getCategory';
 import { useQuestionStore } from '../stores/questionsSlice';
+import { useGameStore } from '../stores/gameSlice';
+
+const { boardState } = useGameStore();
 
 const props = defineProps({
   questionList: Object,
@@ -11,8 +14,10 @@ const props = defineProps({
 
 const { setCategoryToLoad } = useQuestionStore();
 const handleReload = () => {
-  const { index } = props.questionList;
-  console.log(index, props.secondIndex);
+  const modeAddition = boardState.value === 'select_single'
+    ? 0
+    : 6;
+  const index = props.secondIndex + modeAddition;
   setCategoryToLoad.value(index);
   asyncSetCategory(index);
 }
